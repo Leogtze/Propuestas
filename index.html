@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Generador de Propuestas — Leo Gutiérrez · Isuzu</title>
+<title>Presentador de Propuestas — Leo Gutiérrez · Isuzu</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -13,68 +13,70 @@
   --black:#111;--mid:#555;--muted:#888;--light:#F7F6F4;--border:#E8E6E2;--white:#fff;
 }
 body{font-family:'Work Sans','Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--light);color:#111;font-size:14px;line-height:1.6;min-height:100vh}
-
-/* LAYOUT */
 .app{display:grid;grid-template-columns:420px 1fr;min-height:100vh}
 
-/* PANEL IZQUIERDO — FORMULARIO */
-.panel-form{background:#fff;border-right:1px solid var(--border);padding:32px 28px;overflow-y:auto;max-height:100vh;position:sticky;top:0}
-.panel-form-inner{display:flex;flex-direction:column;gap:0}
-
-.form-logo{display:flex;align-items:center;gap:10px;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--border)}
-.form-logo-text{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;letter-spacing:1px}
+/* PANEL IZQUIERDO */
+.panel-form{background:#fff;border-right:1px solid var(--border);padding:28px 24px;overflow-y:auto;max-height:100vh;position:sticky;top:0}
+.form-logo{display:flex;align-items:center;gap:10px;margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.form-logo-text{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:900;letter-spacing:1px}
 .form-logo-text span{color:var(--red)}
-.form-logo-sub{font-size:10px;color:#888;font-weight:500;letter-spacing:0.5px;margin-top:1px}
-
-.form-section{margin-bottom:24px}
-.form-section-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.form-logo-sub{font-size:10px;color:#888;margin-top:1px}
+.form-section{margin-bottom:20px}
+.form-section-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.fg{display:flex;flex-direction:column;gap:4px}
+.fg{display:flex;flex-direction:column;gap:4px;margin-bottom:0}
 .fg.full{grid-column:1/-1}
 .flabel{font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#666}
 .finput,.fselect,.ftextarea{width:100%;border:1px solid var(--border);border-radius:3px;padding:8px 11px;font-size:13px;font-family:inherit;color:#111;background:#fff;outline:none;transition:border-color .2s}
 .fselect{-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
 .finput:focus,.fselect:focus,.ftextarea:focus{border-color:var(--red)}
 .ftextarea{resize:vertical;min-height:60px}
-
-.btn-generate{width:100%;padding:14px;background:var(--red);color:#fff;border:none;border-radius:3px;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .2s;margin-top:8px}
+.precio-display{background:var(--light);border:1px solid var(--border);border-radius:3px;padding:10px 12px;font-size:15px;font-weight:700;color:#111;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px;min-height:38px}
+.precio-display.filled{background:#f0fdf4;border-color:#bbf7d0;color:#15803d}
+.fin-info{background:var(--light);border-radius:3px;padding:10px 12px;font-size:12px;color:#555;border:1px solid var(--border);grid-column:1/-1;line-height:1.5}
+.fin-info strong{color:var(--red)}
+.btn-generate{width:100%;padding:15px;background:var(--red);color:#fff;border:none;border-radius:3px;font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .2s;margin-top:6px}
 .btn-generate:hover{background:var(--red-dark)}
 .btn-generate:disabled{background:#ccc;cursor:not-allowed}
-.btn-print{width:100%;padding:11px;background:#111;color:#fff;border:none;border-radius:3px;font-family:'Work Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px}
-.btn-print:hover{background:#333}
 
-/* PANEL DERECHO — PREVIEW */
+/* BOTÓN PDF — PROMINENTE */
+.btn-pdf-wrap{margin-top:10px}
+.btn-pdf{width:100%;padding:16px;background:#111;color:#fff;border:none;border-radius:3px;font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:10px;border:3px solid #111}
+.btn-pdf:hover{background:#fff;color:#111}
+.btn-pdf i{font-size:20px}
+.btn-pdf-note{text-align:center;font-size:11px;color:#aaa;margin-top:6px}
+
+/* PANEL PREVIEW */
 .panel-preview{background:var(--light);padding:32px;overflow-y:auto}
-.preview-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;color:#bbb;text-align:center;gap:16px}
-.preview-placeholder i{font-size:48px;opacity:.3}
-.preview-placeholder p{font-size:14px;font-weight:300;max-width:280px;line-height:1.6}
+.preview-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;color:#bbb;text-align:center;gap:14px}
+.preview-placeholder i{font-size:52px;opacity:.2}
+.preview-placeholder p{font-size:13px;color:#ccc;max-width:280px;font-weight:300;line-height:1.7}
 
 /* PROPUESTA */
 .propuesta{background:#fff;max-width:820px;margin:0 auto;box-shadow:0 4px 32px rgba(0,0,0,0.08);border-radius:4px;overflow:hidden}
 
-/* HEADER PROPUESTA */
+/* HEADER */
 .prop-header{background:#111;padding:36px 44px 32px;position:relative;overflow:hidden}
 .prop-header::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:rgba(204,31,31,0.15)}
-.prop-header::after{content:'';position:absolute;bottom:-40px;left:200px;width:120px;height:120px;border-radius:50%;background:rgba(204,31,31,0.08)}
 .prop-header-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;position:relative;z-index:1}
-.prop-brand{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:#fff;letter-spacing:2px}
+.prop-brand{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:#fff;letter-spacing:2px}
 .prop-brand span{color:var(--red)}
 .prop-folio{text-align:right}
-.prop-folio-num{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:#fff;letter-spacing:1px}
+.prop-folio-num{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:#fff;letter-spacing:1px}
 .prop-folio-label{font-size:10px;color:#666;letter-spacing:1px;text-transform:uppercase}
 .prop-header-main{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;position:relative;z-index:1}
-.prop-titulo{font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1;margin-bottom:8px}
+.prop-titulo{font-family:'Barlow Condensed',sans-serif;font-size:46px;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1;margin-bottom:8px}
 .prop-titulo span{color:var(--red)}
 .prop-subtitulo{font-size:13px;color:#888;font-weight:300}
 .prop-modelo-badge{background:var(--red);color:#fff;padding:10px 20px;border-radius:3px;text-align:center}
-.prop-modelo-nombre{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;letter-spacing:1px;line-height:1}
+.prop-modelo-nombre{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;letter-spacing:1px;line-height:1}
 .prop-modelo-pbv{font-size:11px;opacity:.85;margin-top:2px}
 
-/* CLIENTE + VENDEDOR */
+/* META */
 .prop-meta{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--border)}
-.prop-meta-block{padding:22px 28px}
+.prop-meta-block{padding:20px 28px}
 .prop-meta-block:first-child{border-right:1px solid var(--border)}
-.prop-meta-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.prop-meta-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:8px}
 .prop-meta-name{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:#111;letter-spacing:-0.5px;margin-bottom:4px}
 .prop-meta-rows{display:flex;flex-direction:column;gap:3px}
 .prop-meta-row{font-size:12px;color:#555;display:flex;gap:6px}
@@ -82,19 +84,17 @@ body{font-family:'Work Sans','Helvetica Neue',Helvetica,Arial,sans-serif;backgro
 .prop-vigencia{display:flex;align-items:center;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:11px;color:#888}
 .prop-vigencia i{color:var(--red);font-size:10px}
 
-/* IMAGEN MODELO */
+/* IMAGEN */
 .prop-modelo-img{background:#f0efed;padding:24px 44px;text-align:center;border-bottom:1px solid var(--border)}
 .prop-modelo-img img{max-height:180px;object-fit:contain;max-width:100%}
-.prop-modelo-img-placeholder{height:180px;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:48px}
 
 /* SPECS */
-.prop-specs{padding:24px 44px;border-bottom:1px solid var(--border)}
-.prop-section-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:14px}
-.specs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.spec-box{background:var(--light);border-radius:3px;padding:12px 14px}
+.prop-specs{padding:22px 44px;border-bottom:1px solid var(--border)}
+.prop-section-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+.specs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.spec-box{background:var(--light);border-radius:3px;padding:11px 13px}
 .spec-box-label{font-size:9px;color:#aaa;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
-.spec-box-val{font-size:16px;font-weight:700;color:#111;margin-top:2px;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.3px}
-.spec-box-unit{font-size:10px;color:#888;font-weight:400}
+.spec-box-val{font-size:15px;font-weight:700;color:#111;margin-top:2px;font-family:'Barlow Condensed',sans-serif}
 
 /* PRECIO */
 .prop-precio{padding:22px 44px;background:#111;border-bottom:1px solid #222}
@@ -103,83 +103,90 @@ body{font-family:'Work Sans','Helvetica Neue',Helvetica,Arial,sans-serif;backgro
 .precio-item:first-child{padding-left:0}
 .precio-item:last-child{border-right:none}
 .precio-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:6px}
-.precio-val{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:#fff;letter-spacing:-0.5px;line-height:1}
+.precio-val{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:#fff;letter-spacing:-0.5px;line-height:1}
 .precio-val.highlight{color:var(--red)}
 .precio-sub{font-size:10px;color:#666;margin-top:3px}
 
 /* FINANCIAMIENTO */
-.prop-fin{padding:24px 44px;border-bottom:1px solid var(--border)}
+.prop-fin{padding:22px 44px;border-bottom:1px solid var(--border)}
 .fin-tabs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.fin-tab{border:1px solid var(--border);border-radius:4px;padding:16px;position:relative}
+.fin-tab{border:1px solid var(--border);border-radius:4px;padding:15px;position:relative}
 .fin-tab.best{border-color:var(--red);background:var(--red-light)}
 .fin-tab-best-badge{position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 10px;border-radius:10px;white-space:nowrap}
-.fin-tab-title{font-size:11px;font-weight:700;color:#111;margin-bottom:10px;letter-spacing:0.3px}
-.fin-tab-rows{display:flex;flex-direction:column;gap:5px}
+.fin-tab-title{font-size:11px;font-weight:700;color:#111;margin-bottom:10px}
+.fin-tab-rows{display:flex;flex-direction:column;gap:4px}
 .fin-tab-row{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid rgba(0,0,0,0.05)}
 .fin-tab-row:last-child{border:none}
 .fin-tab-row-l{color:#888}
 .fin-tab-row-v{font-weight:700;color:#111}
 .fin-tab-row-v.green{color:#16a34a}
-.fin-tab-row-v.red{color:var(--red)}
+.fin-tab-row-v.red{color:var(--red);font-size:13px}
 .fin-tab-mensual{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);text-align:center}
-.fin-tab-mensual-num{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:#111;letter-spacing:-0.5px;line-height:1}
+.fin-tab-mensual-num{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:#111;line-height:1}
 .fin-tab-mensual-label{font-size:10px;color:#888;margin-top:1px}
 
 /* RENTABILIDAD */
-.prop-rent{padding:24px 44px;border-bottom:1px solid var(--border)}
-.rent-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.rent-col{border-radius:4px;padding:18px 20px}
+.prop-rent{padding:22px 44px;border-bottom:1px solid var(--border)}
+.rent-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.rent-col{border-radius:4px;padding:16px 18px}
 .rent-col.actual{background:#FFF5F5;border:1px solid #FECACA}
 .rent-col.isuzu{background:#F0FDF4;border:1px solid #BBF7D0}
-.rent-col-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+.rent-col-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
 .rent-col.actual .rent-col-title{color:#DC2626}
 .rent-col.isuzu .rent-col-title{color:#16a34a}
-.rent-rows{display:flex;flex-direction:column;gap:6px}
-.rent-row{display:flex;justify-content:space-between;font-size:12px;border-bottom:1px solid rgba(0,0,0,0.06);padding-bottom:5px}
+.rent-rows{display:flex;flex-direction:column;gap:5px}
+.rent-row{display:flex;justify-content:space-between;font-size:12px;border-bottom:1px solid rgba(0,0,0,0.06);padding-bottom:4px}
 .rent-row:last-child{border:none;padding:0}
 .rent-row-l{color:#666}
 .rent-row-v{font-weight:700;color:#111}
-.rent-total{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:16px;background:#111;border-radius:4px;text-align:center}
-.rent-total-item{}
+.rent-total{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:14px;background:#111;border-radius:4px;text-align:center}
 .rent-total-label{font-size:9px;color:#666;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
-.rent-total-val{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:#fff;line-height:1}
+.rent-total-val{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:#fff;line-height:1}
 .rent-total-val.green{color:#4ade80}
 .rent-total-sub{font-size:10px;color:#666;margin-top:2px}
 
-/* CARROCERÍAS */
-.prop-car{padding:20px 44px;border-bottom:1px solid var(--border)}
-.car-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.car-tag{padding:6px 14px;background:var(--light);border:1px solid var(--border);border-radius:2px;font-size:12px;font-weight:600;color:#555}
-
 /* MANTENIMIENTO */
-.prop-mant{padding:20px 44px;border-bottom:1px solid var(--border)}
-.mant-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px}
+.prop-mant{padding:18px 44px;border-bottom:1px solid var(--border)}
+.mant-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px}
 .mant-row:last-child{border:none}
 .mant-row-l{color:#666}
 .mant-row-v{font-weight:700;color:#111}
 
-/* FOOTER PROPUESTA */
-.prop-footer{background:#111;padding:20px 44px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+/* FOOTER */
+.prop-footer{background:#111;padding:18px 44px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
 .prop-footer-brand{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:#fff;letter-spacing:1px}
 .prop-footer-brand span{color:var(--red)}
-.prop-footer-contact{display:flex;gap:20px;align-items:center}
+.prop-footer-contact{display:flex;gap:16px;align-items:center}
 .prop-footer-item{font-size:11px;color:#888;display:flex;align-items:center;gap:5px}
 .prop-footer-item i{color:var(--red);font-size:10px}
-.prop-footer-note{font-size:10px;color:#555;text-align:center;width:100%;border-top:1px solid #222;padding-top:12px;margin-top:4px}
+.prop-footer-note{font-size:10px;color:#555;text-align:center;width:100%;border-top:1px solid #222;padding-top:10px;margin-top:4px}
 
-/* SPINNER */
-.spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;margin-right:8px;vertical-align:middle}
+/* MODAL LEGALES */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-overlay.visible{opacity:1;pointer-events:all}
+.modal-box{background:#fff;border-radius:6px;max-width:520px;width:100%;padding:36px 32px;position:relative;transform:translateY(20px);transition:transform .25s}
+.modal-overlay.visible .modal-box{transform:translateY(0)}
+.modal-icon{width:52px;height:52px;background:var(--red-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--red);font-size:22px}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:#111;text-align:center;margin-bottom:14px;letter-spacing:-0.5px}
+.modal-body{font-size:13px;color:#555;line-height:1.7;margin-bottom:24px;text-align:left;background:var(--light);border-radius:4px;padding:16px}
+.modal-body ul{margin-left:16px;margin-top:6px;display:flex;flex-direction:column;gap:4px}
+.modal-body li{font-size:12px;color:#666}
+.modal-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modal-btn-cancel{padding:12px;border:1.5px solid var(--border);background:#fff;border-radius:3px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;color:#555;transition:all .2s}
+.modal-btn-cancel:hover{border-color:#111;color:#111}
+.modal-btn-ok{padding:12px;background:#111;color:#fff;border:none;border-radius:3px;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.modal-btn-ok:hover{background:var(--red)}
+
+/* SPIN */
+.spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* PRINT */
 @media print{
-  .panel-form{display:none}
+  .panel-form,.btn-pdf-wrap,.btn-generate,.modal-overlay{display:none!important}
   .panel-preview{padding:0;background:#fff}
   .app{grid-template-columns:1fr}
-  .propuesta{box-shadow:none;max-width:100%}
-  .btn-print,.btn-generate{display:none}
+  .propuesta{box-shadow:none;max-width:100%;border-radius:0}
 }
-
 @media(max-width:860px){
   .app{grid-template-columns:1fr}
   .panel-form{max-height:none;position:static;border-right:none;border-bottom:1px solid var(--border)}
@@ -188,179 +195,186 @@ body{font-family:'Work Sans','Helvetica Neue',Helvetica,Arial,sans-serif;backgro
 </style>
 </head>
 <body>
+
+<!-- MODAL LEGALES -->
+<div class="modal-overlay" id="modal-legales">
+  <div class="modal-box">
+    <div class="modal-icon"><i class="fas fa-file-contract"></i></div>
+    <div class="modal-title">Aviso importante antes de descargar</div>
+    <div class="modal-body">
+      Esta propuesta comercial es una <strong>estimación de referencia</strong> y está sujeta a las siguientes condiciones:
+      <ul>
+        <li>Los precios mostrados son de lista y pueden variar sin previo aviso.</li>
+        <li>Los pagos mensuales son estimados y están sujetos a aprobación de crédito por parte de la institución financiera.</li>
+        <li>Las tasas de interés están sujetas a cambio conforme a las políticas vigentes de Banorte.</li>
+        <li>La promoción de tasa 0% aplica únicamente en modelos y versiones seleccionadas según disponibilidad.</li>
+        <li>El análisis de rentabilidad es un cálculo estimado basado en los datos proporcionados por el cliente.</li>
+        <li>Esta propuesta tiene vigencia de <strong>30 días naturales</strong> a partir de su fecha de emisión.</li>
+        <li>Precios con IVA incluido. Imágenes de referencia.</li>
+      </ul>
+    </div>
+    <div class="modal-btns">
+      <button class="modal-btn-cancel" onclick="cerrarModal()">Cancelar</button>
+      <button class="modal-btn-ok" onclick="confirmarPDF()"><i class="fas fa-download"></i> Entendido, descargar</button>
+    </div>
+  </div>
+</div>
+
 <div class="app">
 
   <!-- PANEL FORMULARIO -->
   <div class="panel-form">
-    <div class="panel-form-inner">
-
-      <div class="form-logo">
-        <div>
-          <div class="form-logo-text"><span>ISUZU</span> SANTA CATARINA</div>
-          <div class="form-logo-sub">Generador de propuestas · Leo Gutiérrez</div>
-        </div>
+    <div class="form-logo">
+      <div>
+        <div class="form-logo-text"><span>ISUZU</span> PROPUESTAS</div>
+        <div class="form-logo-sub">Leo Gutiérrez · Generador de propuestas</div>
       </div>
-
-      <!-- CLIENTE -->
-      <div class="form-section">
-        <div class="form-section-title">Datos del cliente</div>
-        <div class="form-grid">
-          <div class="fg full"><label class="flabel">Nombre completo / Razón social</label><input type="text" class="finput" id="c-nombre" placeholder="Transportes García S.A. de C.V."></div>
-          <div class="fg"><label class="flabel">Tipo de persona</label>
-            <select class="fselect" id="c-tipo">
-              <option value="">Seleccionar...</option>
-              <option>Persona física</option>
-              <option>Persona física con actividad empresarial</option>
-              <option>Persona moral</option>
-              <option>Asalariado</option>
-            </select>
-          </div>
-          <div class="fg"><label class="flabel">Giro de negocio</label><input type="text" class="finput" id="c-giro" placeholder="Distribución de alimentos"></div>
-          <div class="fg"><label class="flabel">Teléfono / WA</label><input type="text" class="finput" id="c-tel" placeholder="81 1234 5678"></div>
-          <div class="fg"><label class="flabel">Correo electrónico</label><input type="text" class="finput" id="c-email" placeholder="correo@empresa.com"></div>
-          <div class="fg"><label class="flabel">Unidades requeridas</label><input type="number" class="finput" id="c-unidades" placeholder="1" min="1" value="1"></div>
-          <div class="fg"><label class="flabel">Vigencia de propuesta</label>
-            <select class="fselect" id="c-vigencia">
-              <option value="15">15 días</option>
-              <option value="30" selected>30 días</option>
-              <option value="45">45 días</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- MODELO -->
-      <div class="form-section">
-        <div class="form-section-title">Modelo Isuzu</div>
-        <div class="form-grid">
-          <div class="fg full"><label class="flabel">Modelo</label>
-            <select class="fselect" id="m-modelo" onchange="onModeloChange()">
-              <option value="">Seleccionar modelo...</option>
-              <optgroup label="ELF">
-                <option value="ELF 100">ELF 100</option>
-                <option value="ELF 200">ELF 200</option>
-                <option value="ELF 300">ELF 300</option>
-                <option value="ELF 350">ELF 350</option>
-                <option value="ELF 400">ELF 400</option>
-                <option value="ELF 500">ELF 500</option>
-                <option value="ELF 600">ELF 600</option>
-                <option value="ELF 600 BUS">ELF 600 BUS</option>
-              </optgroup>
-              <optgroup label="FORWARD">
-                <option value="FORWARD 800">FORWARD 800</option>
-                <option value="FORWARD 1100">FORWARD 1100</option>
-                <option value="FORWARD 1800">FORWARD 1800</option>
-                <option value="FORWARD 2000">FORWARD 2000</option>
-              </optgroup>
-              <optgroup label="D-MAX (ago 2026)">
-                <option value="D-MAX SE">D-MAX SE</option>
-                <option value="D-MAX HL MT">D-MAX HL MT</option>
-                <option value="D-MAX HL AT">D-MAX HL AT</option>
-                <option value="D-MAX DX">D-MAX DX</option>
-                <option value="D-MAX LS">D-MAX LS</option>
-              </optgroup>
-            </select>
-          </div>
-          <div class="fg full"><label class="flabel">Carrocería / aplicación</label>
-            <select class="fselect" id="m-carroceria">
-              <option value="">Seleccionar...</option>
-              <option>Estacas</option><option>Caja seca</option><option>Caja refrigerada</option>
-              <option>Volteo</option><option>Plataforma</option><option>Grúa</option>
-              <option>Pipa</option><option>Canastilla</option><option>Revolvedora</option>
-              <option>Garrafonera</option><option>Compactadora</option><option>Midibús</option>
-              <option>Sin carrocería (chasis)</option>
-            </select>
-          </div>
-          <div class="fg full"><label class="flabel">Precio de lista (con IVA)</label>
-            <input type="number" class="finput" id="m-precio" placeholder="0" step="1000">
-          </div>
-          <div class="fg full"><label class="flabel">Observaciones del modelo</label>
-            <textarea class="ftextarea" id="m-obs" placeholder="Color disponible, tiempo de entrega, equipamiento especial..."></textarea>
-          </div>
-        </div>
-      </div>
-
-      <!-- FINANCIAMIENTO -->
-      <div class="form-section">
-        <div class="form-section-title">Financiamiento sugerido</div>
-        <div class="form-grid">
-          <div class="fg"><label class="flabel">Esquema recomendado</label>
-            <select class="fselect" id="f-esquema">
-              <option value="credito">Crédito Banorte</option>
-              <option value="arrendamiento">Arrendamiento puro</option>
-              <option value="contado">Contado</option>
-            </select>
-          </div>
-          <div class="fg"><label class="flabel">Enganche (%)</label>
-            <select class="fselect" id="f-enganche">
-              <option value="20">20%</option>
-              <option value="30">30%</option>
-              <option value="40">40%</option>
-              <option value="50">50%</option>
-            </select>
-          </div>
-          <div class="fg"><label class="flabel">Plazo (meses)</label>
-            <select class="fselect" id="f-plazo">
-              <option value="12">12 meses</option>
-              <option value="24">24 meses</option>
-              <option value="36">36 meses</option>
-              <option value="48">48 meses</option>
-              <option value="60">60 meses</option>
-              <option value="72">72 meses</option>
-            </select>
-          </div>
-          <div class="fg"><label class="flabel">Tasa anual (%)</label>
-            <input type="number" class="finput" id="f-tasa" placeholder="17.99" step="0.01" value="17.99">
-          </div>
-        </div>
-      </div>
-
-      <!-- UNIDAD ACTUAL (RENTABILIDAD) -->
-      <div class="form-section">
-        <div class="form-section-title">Unidad actual del cliente</div>
-        <div class="form-grid">
-          <div class="fg full"><label class="flabel">Descripción de su unidad actual</label>
-            <input type="text" class="finput" id="r-unidad" placeholder="Ej: Hino 300 2018, Volkswagen Delivery...">
-          </div>
-          <div class="fg"><label class="flabel">Gasto mensual combustible ($)</label>
-            <input type="number" class="finput" id="r-combustible" placeholder="12000" step="100">
-          </div>
-          <div class="fg"><label class="flabel">Gasto mensual mantenimiento ($)</label>
-            <input type="number" class="finput" id="r-mantenimiento" placeholder="6000" step="100">
-          </div>
-          <div class="fg"><label class="flabel">Km recorridos al mes</label>
-            <input type="number" class="finput" id="r-km" placeholder="8000" step="500">
-          </div>
-          <div class="fg"><label class="flabel">Días de paro al mes (averías)</label>
-            <input type="number" class="finput" id="r-paro" placeholder="2" step="1" min="0">
-          </div>
-          <div class="fg"><label class="flabel">Ingreso diario aproximado ($)</label>
-            <input type="number" class="finput" id="r-ingreso" placeholder="3500" step="100">
-          </div>
-          <div class="fg"><label class="flabel">Rendimiento actual (km/L)</label>
-            <input type="number" class="finput" id="r-rend-actual" placeholder="8" step="0.5">
-          </div>
-          <div class="fg"><label class="flabel">Precio combustible ($/L)</label>
-            <input type="number" class="finput" id="r-precio-diesel" placeholder="26.50" step="0.10" value="26.50">
-          </div>
-        </div>
-      </div>
-
-      <button class="btn-generate" id="btn-gen" onclick="generarPropuesta()">
-        <i class="fas fa-file-invoice"></i> Generar propuesta
-      </button>
-      <button class="btn-print" onclick="window.print()">
-        <i class="fas fa-print"></i> Imprimir / Guardar PDF
-      </button>
-
     </div>
+
+    <!-- CLIENTE -->
+    <div class="form-section">
+      <div class="form-section-title">Datos del cliente</div>
+      <div class="form-grid">
+        <div class="fg full"><label class="flabel">Nombre completo / Razón social</label><input type="text" class="finput" id="c-nombre" placeholder="Transportes García S.A. de C.V."></div>
+        <div class="fg"><label class="flabel">Tipo de persona</label>
+          <select class="fselect" id="c-tipo">
+            <option value="">Seleccionar...</option>
+            <option>Persona física</option>
+            <option>Persona física con actividad empresarial</option>
+            <option>Persona moral</option>
+            <option>Asalariado</option>
+          </select>
+        </div>
+        <div class="fg"><label class="flabel">Giro de negocio</label><input type="text" class="finput" id="c-giro" placeholder="Distribución de alimentos"></div>
+        <div class="fg"><label class="flabel">Teléfono / WhatsApp</label><input type="text" class="finput" id="c-tel" placeholder="81 1234 5678"></div>
+        <div class="fg"><label class="flabel">Correo electrónico</label><input type="text" class="finput" id="c-email" placeholder="correo@empresa.com"></div>
+        <div class="fg full"><label class="flabel">Unidades requeridas</label><input type="number" class="finput" id="c-unidades" placeholder="1" min="1" value="1"></div>
+      </div>
+    </div>
+
+    <!-- MODELO -->
+    <div class="form-section">
+      <div class="form-section-title">Modelo Isuzu</div>
+      <div class="form-grid">
+        <div class="fg full"><label class="flabel">Línea</label>
+          <select class="fselect" id="m-linea" onchange="onLineaChange()">
+            <option value="">Seleccionar línea...</option>
+            <option value="elf">ELF — Ligeros y medianos</option>
+            <option value="forward">FORWARD — Medianos y pesados</option>
+            <option value="dmax">D-MAX — Pick-up (lanz. jul 2026)</option>
+          </select>
+        </div>
+        <div class="fg full"><label class="flabel">Modelo / Chasis</label>
+          <select class="fselect" id="m-modelo" onchange="onModeloChange()" disabled>
+            <option value="">Primero elige la línea</option>
+          </select>
+        </div>
+        <div class="fg full"><label class="flabel">Precio de lista (IVA incluido)</label>
+          <div class="precio-display" id="precio-display">— Selecciona un modelo —</div>
+        </div>
+        <div class="fg full"><label class="flabel">Carrocería / Aplicación</label>
+          <select class="fselect" id="m-carroceria">
+            <option value="">Seleccionar...</option>
+            <option>Estacas</option><option>Caja seca</option><option>Caja refrigerada</option>
+            <option>Volteo</option><option>Plataforma</option><option>Grúa</option>
+            <option>Pipa</option><option>Canastilla</option><option>Revolvedora</option>
+            <option>Garrafonera</option><option>Compactadora</option><option>Midibús</option>
+            <option>Sin carrocería (chasis)</option>
+          </select>
+        </div>
+        <div class="fg full"><label class="flabel">Observaciones del modelo</label>
+          <textarea class="ftextarea" id="m-obs" placeholder="Color disponible, tiempo de entrega, equipamiento especial..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINANCIAMIENTO -->
+    <div class="form-section">
+      <div class="form-section-title">Financiamiento</div>
+      <div class="form-grid">
+        <div class="fg"><label class="flabel">Esquema recomendado</label>
+          <select class="fselect" id="f-esquema">
+            <option value="credito">Crédito Banorte</option>
+            <option value="arrendamiento">Arrendamiento puro</option>
+            <option value="contado">Contado</option>
+          </select>
+        </div>
+        <div class="fg"><label class="flabel">Enganche</label>
+          <select class="fselect" id="f-enganche" onchange="onEngancheChange()">
+            <option value="20">20%</option>
+            <option value="30">30%</option>
+            <option value="40">40%</option>
+            <option value="50">50%</option>
+          </select>
+        </div>
+        <div class="fg"><label class="flabel">Plazo</label>
+          <select class="fselect" id="f-plazo">
+            <option value="12">12 meses</option>
+            <option value="24">24 meses</option>
+            <option value="36" selected>36 meses</option>
+            <option value="48">48 meses</option>
+            <option value="60">60 meses</option>
+            <option value="72">72 meses</option>
+          </select>
+        </div>
+        <div class="fg"><label class="flabel">Tasa anual Banorte</label>
+          <div class="precio-display" id="tasa-display" style="font-size:18px">17.99%</div>
+        </div>
+        <div class="fin-info" id="fin-info">
+          <strong>Banorte Alianzas</strong> · Eng. 20% → 17.99% anual
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIDAD ACTUAL -->
+    <div class="form-section">
+      <div class="form-section-title">Unidad actual del cliente (rentabilidad)</div>
+      <div class="form-grid">
+        <div class="fg full"><label class="flabel">Descripción de su unidad actual</label>
+          <input type="text" class="finput" id="r-unidad" placeholder="Ej: Hino 300 2018, VW Delivery...">
+        </div>
+        <div class="fg"><label class="flabel">Combustible/mes ($)</label>
+          <input type="number" class="finput" id="r-combustible" placeholder="12000" step="100">
+        </div>
+        <div class="fg"><label class="flabel">Mantenimiento/mes ($)</label>
+          <input type="number" class="finput" id="r-mantenimiento" placeholder="6000" step="100">
+        </div>
+        <div class="fg"><label class="flabel">Km recorridos/mes</label>
+          <input type="number" class="finput" id="r-km" placeholder="8000" step="500">
+        </div>
+        <div class="fg"><label class="flabel">Días de paro/mes</label>
+          <input type="number" class="finput" id="r-paro" placeholder="2" step="1" min="0">
+        </div>
+        <div class="fg"><label class="flabel">Ingreso diario ($)</label>
+          <input type="number" class="finput" id="r-ingreso" placeholder="3500" step="100">
+        </div>
+        <div class="fg"><label class="flabel">Rendimiento actual (km/L)</label>
+          <input type="number" class="finput" id="r-rend-actual" placeholder="8" step="0.5">
+        </div>
+        <div class="fg"><label class="flabel">Precio diesel ($/L)</label>
+          <input type="number" class="finput" id="r-diesel" placeholder="26.50" step="0.10" value="26.50">
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-generate" id="btn-gen" onclick="generarPropuesta()">
+      <i class="fas fa-file-invoice"></i> Generar propuesta
+    </button>
+
+    <div class="btn-pdf-wrap">
+      <button class="btn-pdf" id="btn-pdf" onclick="abrirModal()" disabled>
+        <i class="fas fa-file-pdf"></i> Descargar PDF
+      </button>
+      <div class="btn-pdf-note" id="pdf-note">Genera la propuesta primero</div>
+    </div>
+
   </div>
 
   <!-- PANEL PREVIEW -->
   <div class="panel-preview" id="panel-preview">
     <div class="preview-placeholder" id="placeholder">
       <i class="fas fa-file-invoice"></i>
-      <p>Llena los datos del cliente y el modelo para generar la propuesta profesional.</p>
+      <p>Llena los datos del cliente y selecciona el modelo para generar la propuesta.</p>
     </div>
     <div id="propuesta-output" style="display:none"></div>
   </div>
@@ -368,220 +382,229 @@ body{font-family:'Work Sans','Helvetica Neue',Helvetica,Arial,sans-serif;backgro
 </div>
 
 <script>
-// DATOS DE MODELOS
-const modelos = {
-  'ELF 100':{pbv:'3.9 ton',motor:'4JZ1-TCS',hp:'148 hp',cc:'2,999 cc',largo:'3,400 mm',ejes:'2,475 mm',tanque:'68 L',torque:'277 lb-pie',mant:5545.42,mant_km:15000,rend:14,img:'https://www.isuzumex.com.mx/images/lines/slider/ELF100_1.png',carrocerias:['Estacas','Caja seca','Plataforma','Garrafonera']},
-  'ELF 200':{pbv:'4.1 ton',motor:'4JZ1-TCS',hp:'148 hp',cc:'2,999 cc',largo:'3,130 mm',ejes:'2,475 mm',tanque:'68 L',torque:'277 lb-pie',mant:5545.42,mant_km:15000,rend:13,img:'https://www.isuzumex.com.mx/images/lines/slider/ELF200_1.png',carrocerias:['Estacas','Caja seca','Caja refrigerada','Plataforma']},
-  'ELF 300':{pbv:'5.0 ton',motor:'4JZ1-TCS',hp:'148 hp',cc:'2,999 cc',largo:'4,850 mm',ejes:'2,475–3,345 mm',tanque:'68–98 L',torque:'277 lb-pie',mant:5939.17,mant_km:10400,rend:12,img:'https://www.isuzumex.com.mx/images/lines/slider/ELF300_1.png',carrocerias:['Estacas','Caja seca','Compactadora','Pipa']},
-  'ELF 350':{pbv:'5.8 ton',motor:'4JZ1-TCS',hp:'148 hp',cc:'2,999 cc',largo:'5,650 mm',ejes:'2,765–3,815 mm',tanque:'140 L',torque:'277 lb-pie',mant:5939.17,mant_km:10400,rend:12,img:'https://www.isuzumex.com.mx/images/lines/slider/ELF350_1.png',carrocerias:['Estacas','Volteo','Grúa','Revolvedora']},
-  'ELF 400':{pbv:'6.5 ton',motor:'4HK1-TCC',hp:'182 hp',cc:'5,194 cc',largo:'5,650 mm',ejes:'2,765–3,815 mm',tanque:'100–140 L',torque:'372 lb-pie',mant:5939.17,mant_km:10400,rend:11,img:'https://www.isuzumex.com.mx/images/lines/slider/ELF500_1.png',carrocerias:['Caja seca','Caja refrigerada','Canastilla','Garrafonera']},
-  'ELF 500':{pbv:'7.25 ton',motor:'4HK1-TCC',hp:'182 hp',cc:'5,194 cc',largo:'6,750 mm',ejes:'2,765–4,475 mm',tanque:'100–140 L',torque:'372 lb-pie',mant:5939.17,mant_km:10400,rend:10,img:'https://www.isuzumex.com.mx/images/lines/slider/ELF500_1.png',carrocerias:['Volteo','Compactadora','Pipa','Caja refrigerada']},
-  'ELF 600':{pbv:'8.8 ton',motor:'4HK1-TCC',hp:'182 hp',cc:'5,194 cc',largo:'6,700 mm',ejes:'3,365–4,475 mm',tanque:'140 L',torque:'372 lb-pie',mant:5939.17,mant_km:10400,rend:10,img:'https://www.isuzumex.com.mx/images/lines/slider/ELF600_1.png',carrocerias:['Grúa','Volteo','Revolvedora','Pipa']},
-  'ELF 600 BUS':{pbv:'8.0 ton',motor:'4HK1-TCN',hp:'172 hp',cc:'5,193 cc',largo:'6,130 mm',ejes:'3,815 mm',tanque:'140 L',torque:'376 lb-pie',mant:5939.17,mant_km:10400,rend:9,img:'https://www.isuzumex.com.mx/images/lines/slider/ELFBUS_1.png',carrocerias:['Midibús','Transporte de personal']},
-  'FORWARD 800':{pbv:'10.4 ton',motor:'4HK1-TCS',hp:'207 hp',cc:'5,193 cc',largo:'6,200 mm',ejes:'4,060–4,660 mm',tanque:'200 L',torque:'521 lb-pie',mant:7336.06,mant_km:15000,rend:9,img:'https://www.isuzumex.com.mx/images/lines/slider/FW800_1.png',carrocerias:['Caja seca','Caja refrigerada','Volteo','Grúa']},
-  'FORWARD 1100':{pbv:'15.9 ton',motor:'6HK1-TCS',hp:'271 hp',cc:'7,790 cc',largo:'8,500 mm',ejes:'4,650–5,550 mm',tanque:'400 L',torque:'724 lb-pie',mant:8907.20,mant_km:15000,rend:7,img:'https://www.isuzumex.com.mx/images/lines/slider/FW1100_1.png',carrocerias:['Volteo','Caja refrigerada','Pipa','Compactadora']},
-  'FORWARD 1800':{pbv:'23 ton',motor:'6HK1-TCS',hp:'271 hp',cc:'7,790 cc',largo:'8,800 mm',ejes:'5,700 mm',tanque:'400 L',torque:'724 lb-pie',mant:10015.00,mant_km:15000,rend:6,img:'https://www.isuzumex.com.mx/images/lines/slider/FW1800_1.png',carrocerias:['Volteo','Pipa','Plataforma','Grúa industrial']},
-  'FORWARD 2000':{pbv:'26 ton',motor:'6HK1-TCS',hp:'271 hp',cc:'7,790 cc',largo:'8,800 mm',ejes:'5,700 mm',tanque:'400 L',torque:'724 lb-pie',mant:10015.00,mant_km:15000,rend:6,img:'https://www.isuzumex.com.mx/images/lines/slider/FW2000_1.png',carrocerias:['Volcadora pesada','Grúa industrial','Revolvedora pesada']},
-  'D-MAX SE':{pbv:'800 kg carga',motor:'4JJ3 Diesel',hp:'188 hp',cc:'3,000 cc',largo:'—',ejes:'—',tanque:'76 L',torque:'450 Nm',mant:4500,mant_km:10000,rend:14,img:'https://www.isuzumex.com.mx/images/lines/slider/ELF100_1.png',carrocerias:['Pick-up sencilla']},
-  'D-MAX HL MT':{pbv:'790 kg carga',motor:'4JJ3 Diesel',hp:'188 hp',cc:'3,000 cc',largo:'—',ejes:'—',tanque:'76 L',torque:'450 Nm',mant:4500,mant_km:10000,rend:13,img:'https://www.isuzumex.com.mx/images/lines/slider/ELF100_1.png',carrocerias:['Pick-up doble 4x4']},
-  'D-MAX HL AT':{pbv:'760 kg carga',motor:'4JJ3 Diesel',hp:'188 hp',cc:'3,000 cc',largo:'—',ejes:'—',tanque:'76 L',torque:'450 Nm',mant:4500,mant_km:10000,rend:13,img:'https://www.isuzumex.com.mx/images/lines/slider/ELF100_1.png',carrocerias:['Pick-up doble 4x4 AT']},
-  'D-MAX DX':{pbv:'755 kg carga',motor:'4JJ3 Diesel',hp:'188 hp',cc:'3,000 cc',largo:'—',ejes:'—',tanque:'76 L',torque:'450 Nm',mant:4500,mant_km:10000,rend:13,img:'https://www.isuzumex.com.mx/images/lines/slider/ELF100_1.png',carrocerias:['Pick-up doble 4x4 AT ADAS']},
-  'D-MAX LS':{pbv:'755 kg carga',motor:'4JJ3 Diesel',hp:'188 hp',cc:'3,000 cc',largo:'—',ejes:'—',tanque:'76 L',torque:'450 Nm',mant:4500,mant_km:10000,rend:13,img:'https://www.isuzumex.com.mx/images/lines/slider/ELF100_1.png',carrocerias:['Pick-up doble 4x4 AT Premium']},
+// ─── BASE DE DATOS DE MODELOS ───────────────────────────────────────────────
+const MODELOS = {
+  elf: [
+    {key:'ELF 100 E',     label:'ELF 100 — Chasis E',        pbv:'3.9 ton',  cap:'1.5 ton carga', precio:799400,  hp:'148 hp',torque:'277 Nm',motor:'4JZ1-TCS EURO VI',largo:'3,400 mm', ejes:'2,475 mm',tanque:'68 L',  rend:14, mant:5545.42,mant_km:15000, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF100_1.png',carrocerias:['Estacas','Caja seca','Plataforma','Garrafonera']},
+    {key:'ELF 200 E',     label:'ELF 200 — Chasis E',        pbv:'4.1 ton',  cap:'2 ton carga',   precio:979100,  hp:'148 hp',torque:'277 Nm',motor:'4JZ1-TCS EURO VI',largo:'3,130 mm', ejes:'2,475 mm',tanque:'68 L',  rend:13, mant:5545.42,mant_km:15000, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF200_1.png',carrocerias:['Estacas','Caja seca','Caja refrigerada','Plataforma']},
+    {key:'ELF 300 E',     label:'ELF 300 — Chasis E',        pbv:'5.0 ton',  cap:'3 ton carga',   precio:1081500, hp:'148 hp',torque:'277 Nm',motor:'4JZ1-TCS EURO VI',largo:'3,400 mm', ejes:'2,475 mm',tanque:'68 L',  rend:12, mant:5939.17,mant_km:10400, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF300_1.png',carrocerias:['Estacas','Caja seca','Compactadora','Pipa']},
+    {key:'ELF 300 H',     label:'ELF 300 — Chasis H (largo)',pbv:'5.0 ton',  cap:'3 ton carga',   precio:1099800, hp:'148 hp',torque:'277 Nm',motor:'4JZ1-TCS EURO VI',largo:'4,850 mm', ejes:'3,345 mm',tanque:'98 L',  rend:12, mant:5939.17,mant_km:10400, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF300_1.png',carrocerias:['Estacas','Caja seca','Compactadora','Pipa']},
+    {key:'ELF 350 F',     label:'ELF 350 — Chasis F',        pbv:'5.8 ton',  cap:'3.5 ton carga', precio:1134600, hp:'148 hp',torque:'277 Nm',motor:'4JZ1-TCS EURO VI',largo:'3,900 mm', ejes:'2,765 mm',tanque:'140 L', rend:12, mant:5939.17,mant_km:10400, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF350_1.png',carrocerias:['Estacas','Volteo','Grúa','Revolvedora']},
+    {key:'ELF 350 H',     label:'ELF 350 — Chasis H ★',      pbv:'5.8 ton',  cap:'3.5 ton carga', precio:1156600, hp:'148 hp',torque:'277 Nm',motor:'4JZ1-TCS EURO VI',largo:'4,900 mm', ejes:'3,365 mm',tanque:'140 L', rend:12, mant:5939.17,mant_km:10400, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF350_1.png',carrocerias:['Estacas','Volteo','Grúa','Revolvedora']},
+    {key:'ELF 350 K',     label:'ELF 350 — Chasis K',        pbv:'5.8 ton',  cap:'3.5 ton carga', precio:1171200, hp:'148 hp',torque:'277 Nm',motor:'4JZ1-TCS EURO VI',largo:'5,650 mm', ejes:'3,815 mm',tanque:'140 L', rend:12, mant:5939.17,mant_km:10400, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF350_1.png',carrocerias:['Estacas','Volteo','Grúa','Revolvedora']},
+    {key:'ELF 400 F',     label:'ELF 400 — Chasis F',        pbv:'6.5 ton',  cap:'4 ton carga',   precio:1213300, hp:'182 hp',torque:'372 Nm',motor:'4HK1-TCC EURO VI',largo:'3,900 mm', ejes:'2,765 mm',tanque:'100 L', rend:11, mant:5939.17,mant_km:10400, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF500_1.png',carrocerias:['Caja seca','Caja refrigerada','Canastilla','Garrafonera']},
+    {key:'ELF 400 H',     label:'ELF 400 — Chasis H',        pbv:'6.5 ton',  cap:'4 ton carga',   precio:1237100, hp:'182 hp',torque:'372 Nm',motor:'4HK1-TCC EURO VI',largo:'4,900 mm', ejes:'3,365 mm',tanque:'140 L', rend:11, mant:5939.17,mant_km:10400, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF500_1.png',carrocerias:['Caja seca','Caja refrigerada','Canastilla','Garrafonera']},
+    {key:'ELF 400 K',     label:'ELF 400 — Chasis K',        pbv:'6.5 ton',  cap:'4 ton carga',   precio:1261700, hp:'182 hp',torque:'372 Nm',motor:'4HK1-TCC EURO VI',largo:'5,650 mm', ejes:'3,815 mm',tanque:'140 L', rend:11, mant:5939.17,mant_km:10400, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF500_1.png',carrocerias:['Caja seca','Caja refrigerada','Canastilla','Garrafonera']},
+    {key:'ELF 500 F',     label:'ELF 500 — Chasis F',        pbv:'7.2 ton',  cap:'5 ton carga',   precio:1304800, hp:'182 hp',torque:'372 Nm',motor:'4HK1-TCC EURO VI',largo:'3,900 mm', ejes:'2,765 mm',tanque:'100 L', rend:10, mant:5939.17,mant_km:10400, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF500_1.png',carrocerias:['Volteo','Compactadora','Pipa','Caja refrigerada']},
+    {key:'ELF 500 H',     label:'ELF 500 — Chasis H',        pbv:'7.2 ton',  cap:'5 ton carga',   precio:1317600, hp:'182 hp',torque:'372 Nm',motor:'4HK1-TCC EURO VI',largo:'4,900 mm', ejes:'3,365 mm',tanque:'140 L', rend:10, mant:5939.17,mant_km:10400, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF500_1.png',carrocerias:['Volteo','Compactadora','Pipa','Caja refrigerada']},
+    {key:'ELF 500 K',     label:'ELF 500 — Chasis K',        pbv:'7.2 ton',  cap:'5 ton carga',   precio:1337700, hp:'182 hp',torque:'372 Nm',motor:'4HK1-TCC EURO VI',largo:'5,650 mm', ejes:'3,815 mm',tanque:'140 L', rend:10, mant:5939.17,mant_km:10400, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF500_1.png',carrocerias:['Volteo','Compactadora','Pipa','Caja refrigerada']},
+    {key:'ELF 500 M',     label:'ELF 500 — Chasis M',        pbv:'7.2 ton',  cap:'5 ton carga',   precio:1348700, hp:'182 hp',torque:'372 Nm',motor:'4HK1-TCC EURO VI',largo:'6,685 mm', ejes:'4,475 mm',tanque:'140 L', rend:10, mant:5939.17,mant_km:10400, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF500_1.png',carrocerias:['Volteo','Compactadora','Pipa','Caja refrigerada']},
+    {key:'ELF 600 H',     label:'ELF 600 — Chasis H',        pbv:'8.8 ton',  cap:'6 ton carga',   precio:1381700, hp:'182 hp',torque:'372 Nm',motor:'4HK1-TCC EURO VI',largo:'4,640 mm', ejes:'3,365 mm',tanque:'140 L', rend:10, mant:5939.17,mant_km:10400, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF600_1.png',carrocerias:['Grúa','Volteo','Revolvedora','Pipa']},
+    {key:'ELF 600 K',     label:'ELF 600 — Chasis K',        pbv:'8.8 ton',  cap:'6 ton carga',   precio:1396300, hp:'182 hp',torque:'372 Nm',motor:'4HK1-TCC EURO VI',largo:'5,470 mm', ejes:'3,815 mm',tanque:'140 L', rend:10, mant:5939.17,mant_km:10400, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF600_1.png',carrocerias:['Grúa','Volteo','Revolvedora','Pipa']},
+    {key:'ELF 600 M',     label:'ELF 600 — Chasis M',        pbv:'8.8 ton',  cap:'6 ton carga',   precio:1409100, hp:'182 hp',torque:'372 Nm',motor:'4HK1-TCC EURO VI',largo:'6,700 mm', ejes:'4,475 mm',tanque:'140 L', rend:10, mant:5939.17,mant_km:10400, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF600_1.png',carrocerias:['Grúa','Volteo','Revolvedora','Pipa']},
+  ],
+  forward: [
+    {key:'FW 800 K',  label:'FORWARD 800 — Chasis K',  pbv:'10.4 ton', cap:'8 ton carga',    precio:1522800, hp:'207 hp',torque:'521 Nm',motor:'4HK1-TCS EURO VI',largo:'5,170 mm', ejes:'4,060 mm',tanque:'200 L', rend:9,  mant:7336.06,mant_km:15000, img:'https://www.isuzumex.com.mx/images/lines/slider/FW800_1.png',carrocerias:['Caja seca','Caja refrigerada','Volteo','Grúa']},
+    {key:'FW 800 M',  label:'FORWARD 800 — Chasis M',  pbv:'10.4 ton', cap:'8 ton carga',    precio:1544400, hp:'207 hp',torque:'521 Nm',motor:'4HK1-TCS EURO VI',largo:'6,200 mm', ejes:'4,660 mm',tanque:'200 L', rend:9,  mant:7336.06,mant_km:15000, img:'https://www.isuzumex.com.mx/images/lines/slider/FW800_1.png',carrocerias:['Caja seca','Caja refrigerada','Volteo','Grúa']},
+    {key:'FW 1100 L', label:'FORWARD 1100 — Chasis L', pbv:'15.9 ton', cap:'9.5 ton carga',  precio:1776600, hp:'271 hp',torque:'724 Nm',motor:'6HK1-TCS EURO VI 6 cil.',largo:'7,000 mm', ejes:'4,650 mm',tanque:'400 L', rend:7,  mant:8907.20,mant_km:15000, img:'https://www.isuzumex.com.mx/images/lines/slider/FW1100_1.png',carrocerias:['Volteo','Caja refrigerada','Pipa','Compactadora']},
+    {key:'FW 1100 Q', label:'FORWARD 1100 — Chasis Q', pbv:'15.9 ton', cap:'9.5 ton carga',  precio:1798200, hp:'271 hp',torque:'724 Nm',motor:'6HK1-TCS EURO VI 6 cil.',largo:'8,500 mm', ejes:'5,550 mm',tanque:'400 L', rend:7,  mant:8907.20,mant_km:15000, img:'https://www.isuzumex.com.mx/images/lines/slider/FW1100_1.png',carrocerias:['Volteo','Caja refrigerada','Pipa','Compactadora']},
+    {key:'FW 1400 L', label:'FORWARD 1400 — Chasis L', pbv:'12.0 ton', cap:'12 ton carga',   precio:1875600, hp:'271 hp',torque:'724 Nm',motor:'6HK1-TCS EURO VI 6 cil.',largo:'7,000 mm', ejes:'4,650 mm',tanque:'400 L', rend:7,  mant:8907.20,mant_km:15000, img:'https://www.isuzumex.com.mx/images/lines/slider/FW1100_1.png',carrocerias:['Volteo','Pipa','Plataforma','Grúa industrial']},
+    {key:'FW 1400 Q', label:'FORWARD 1400 — Chasis Q', pbv:'12.0 ton', cap:'12 ton carga',   precio:1909800, hp:'271 hp',torque:'724 Nm',motor:'6HK1-TCS EURO VI 6 cil.',largo:'8,500 mm', ejes:'5,550 mm',tanque:'400 L', rend:7,  mant:8907.20,mant_km:15000, img:'https://www.isuzumex.com.mx/images/lines/slider/FW1100_1.png',carrocerias:['Volteo','Pipa','Plataforma','Grúa industrial']},
+    {key:'FW 1800 T', label:'FORWARD 1800 — Chasis T', pbv:'23.0 ton', cap:'15.7 ton carga', precio:2026800, hp:'271 hp',torque:'724 Nm',motor:'6HK1-TCS EURO VI · 6x2',largo:'8,800 mm', ejes:'5,700 mm',tanque:'400 L', rend:6,  mant:10015.00,mant_km:15000, img:'https://www.isuzumex.com.mx/images/lines/slider/FW1800_1.png',carrocerias:['Volteo','Pipa','Plataforma','Grúa industrial']},
+    {key:'FW 2000 T', label:'FORWARD 2000 — Chasis T', pbv:'26.0 ton', cap:'18.3 ton carga', precio:2140200, hp:'271 hp',torque:'724 Nm',motor:'6HK1-TCS EURO VI · 6x4',largo:'8,800 mm', ejes:'5,700 mm',tanque:'400 L', rend:6,  mant:10015.00,mant_km:15000, img:'https://www.isuzumex.com.mx/images/lines/slider/FW2000_1.png',carrocerias:['Volcadora pesada','Grúa industrial','Revolvedora pesada']},
+  ],
+  dmax: [
+    {key:'DMAX SE',    label:'D-MAX SE — REG 4x2 6MT',           pbv:'800 kg carga', cap:'Pick-up sencilla', precio:540000,  hp:'188 hp',torque:'450 Nm',motor:'4JJ3 Diesel 3.0L EURO 4',largo:'—',ejes:'—',tanque:'76 L',rend:14,mant:4500,mant_km:10000, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF100_1.png',carrocerias:['Pick-up sencilla']},
+    {key:'DMAX HL MT', label:'D-MAX HL MT — CREW 4x4 6MT',       pbv:'790 kg carga', cap:'Pick-up doble 4x4',precio:696000,  hp:'188 hp',torque:'450 Nm',motor:'4JJ3 Diesel 3.0L EURO 4',largo:'—',ejes:'—',tanque:'76 L',rend:13,mant:4500,mant_km:10000, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF100_1.png',carrocerias:['Pick-up doble 4x4']},
+    {key:'DMAX HL AT', label:'D-MAX HL AT — CREW 4x4 6AT',       pbv:'760 kg carga', cap:'Pick-up doble 4x4 AT',precio:724000,hp:'188 hp',torque:'450 Nm',motor:'4JJ3 Diesel 3.0L EURO 4',largo:'—',ejes:'—',tanque:'76 L',rend:13,mant:4500,mant_km:10000, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF100_1.png',carrocerias:['Pick-up doble 4x4 AT']},
+    {key:'DMAX DX',    label:'D-MAX DX — CREW 4x4 6AT ADAS',     pbv:'755 kg carga', cap:'Pick-up ADAS',    precio:792000,  hp:'188 hp',torque:'450 Nm',motor:'4JJ3 Diesel 3.0L EURO 4',largo:'—',ejes:'—',tanque:'76 L',rend:13,mant:4500,mant_km:10000, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF100_1.png',carrocerias:['Pick-up doble 4x4 ADAS']},
+    {key:'DMAX LS',    label:'D-MAX LS — CREW 4x4 6AT Premium',  pbv:'755 kg carga', cap:'Pick-up Premium',  precio:894000,  hp:'188 hp',torque:'450 Nm',motor:'4JJ3 Diesel 3.0L EURO 4',largo:'—',ejes:'—',tanque:'76 L',rend:13,mant:4500,mant_km:10000, img:'https://www.isuzumex.com.mx/images/lines/slider/ELF100_1.png',carrocerias:['Pick-up doble Premium']},
+  ]
 };
 
-// TASAS BANORTE
-const tasas = {20:17.99, 30:15.99, 40:13.99, 50:12.99};
+// TASAS BANORTE según enganche
+const TASAS = {20:17.99, 30:15.99, 40:13.99, 50:12.99};
 
-function onModeloChange(){
-  const m = document.getElementById('m-modelo').value;
-  if(!m) return;
-  const d = modelos[m];
-  if(!d) return;
-  const sel = document.getElementById('m-carroceria');
-  // auto-fill tasa
-  const eng = parseInt(document.getElementById('f-enganche').value)||20;
-  document.getElementById('f-tasa').value = tasas[eng]||17.99;
-}
+// MODELOS CON PROMO 0%
+const PROMO_0 = ['ELF 100 E','ELF 200 E','ELF 300 E','ELF 300 H','ELF 350 F','ELF 350 H','ELF 350 K'];
 
-document.getElementById('f-enganche').addEventListener('change', function(){
-  const t = tasas[parseInt(this.value)];
-  if(t) document.getElementById('f-tasa').value = t;
-});
+let modeloActual = null;
+let propuestaGenerada = false;
 
 function fmt(n){return new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0}).format(n)}
 function fmtN(n){return new Intl.NumberFormat('es-MX',{maximumFractionDigits:0}).format(n)}
 
+function onLineaChange(){
+  const linea = document.getElementById('m-linea').value;
+  const sel = document.getElementById('m-modelo');
+  sel.innerHTML = linea ? '' : '<option value="">Primero elige la línea</option>';
+  sel.disabled = !linea;
+  if(linea && MODELOS[linea]){
+    MODELOS[linea].forEach(m=>{
+      const opt = document.createElement('option');
+      opt.value = m.key;
+      opt.textContent = m.label + ' — ' + fmt(m.precio);
+      sel.appendChild(opt);
+    });
+  }
+  document.getElementById('precio-display').textContent = '— Selecciona un modelo —';
+  document.getElementById('precio-display').classList.remove('filled');
+  modeloActual = null;
+}
+
+function onModeloChange(){
+  const linea = document.getElementById('m-linea').value;
+  const key = document.getElementById('m-modelo').value;
+  if(!linea || !key){ modeloActual = null; return; }
+  modeloActual = MODELOS[linea].find(m=>m.key===key);
+  if(!modeloActual) return;
+  const disp = document.getElementById('precio-display');
+  disp.textContent = fmt(modeloActual.precio) + ' · IVA incluido';
+  disp.classList.add('filled');
+  // Auto-seleccionar primera carrocería
+  const car = document.getElementById('m-carroceria');
+  if(modeloActual.carrocerias && modeloActual.carrocerias.length > 0){
+    for(let i=0;i<car.options.length;i++){
+      if(car.options[i].text === modeloActual.carrocerias[0]){ car.selectedIndex=i; break; }
+    }
+  }
+  actualizarInfoFin();
+}
+
+function onEngancheChange(){
+  actualizarInfoFin();
+}
+
+function actualizarInfoFin(){
+  const eng = parseInt(document.getElementById('f-enganche').value)||20;
+  const tasa = TASAS[eng]||17.99;
+  const plazo = document.getElementById('f-plazo').value;
+  const key = modeloActual ? modeloActual.key : '';
+  const esPromo = PROMO_0.includes(key) && parseInt(plazo)<=36;
+  const tasaDisplay = document.getElementById('tasa-display');
+  const finInfo = document.getElementById('fin-info');
+  if(esPromo){
+    tasaDisplay.textContent = '0% — PROMO ESPECIAL';
+    tasaDisplay.style.color = '#15803d';
+    finInfo.innerHTML = '<strong style="color:#15803d">¡PROMO 0%!</strong> · Aplica para este modelo · Plazos 12, 24 o 36 meses · Modelos 2026 y 2027';
+  } else {
+    tasaDisplay.textContent = tasa + '% anual';
+    tasaDisplay.style.color = '#111';
+    finInfo.innerHTML = `<strong>Banorte Alianzas</strong> · Eng. ${eng}% → ${tasa}% anual · Hasta 72 meses`;
+  }
+}
+
+document.getElementById('f-plazo').addEventListener('change', actualizarInfoFin);
+
 function calcPago(precio, engPct, plazo, tasa){
   const eng = precio * (engPct/100);
   const principal = precio - eng;
+  if(tasa===0) return {eng, mensual:principal/plazo, total:precio};
   const r = (tasa/100)/12;
-  if(r===0) return {eng, mensual: principal/plazo, total: precio};
-  const mensual = principal * (r * Math.pow(1+r,plazo)) / (Math.pow(1+r,plazo)-1);
-  return {eng, mensual, total: eng + mensual*plazo};
+  const mensual = principal*(r*Math.pow(1+r,plazo))/(Math.pow(1+r,plazo)-1);
+  return {eng, mensual, total:eng+mensual*plazo};
 }
 
 function generarPropuesta(){
+  if(!modeloActual){ alert('Selecciona un modelo primero.'); return; }
   const btn = document.getElementById('btn-gen');
   btn.disabled = true;
   btn.innerHTML = '<span class="spin"></span> GENERANDO...';
 
-  // Recoger datos
-  const cNombre = document.getElementById('c-nombre').value || 'Cliente';
-  const cTipo = document.getElementById('c-tipo').value || '';
-  const cGiro = document.getElementById('c-giro').value || '';
-  const cTel = document.getElementById('c-tel').value || '';
-  const cEmail = document.getElementById('c-email').value || '';
+  const cNombre   = document.getElementById('c-nombre').value || 'Cliente';
+  const cTipo     = document.getElementById('c-tipo').value || '';
+  const cGiro     = document.getElementById('c-giro').value || '';
+  const cTel      = document.getElementById('c-tel').value || '';
+  const cEmail    = document.getElementById('c-email').value || '';
   const cUnidades = parseInt(document.getElementById('c-unidades').value)||1;
-  const cVigencia = document.getElementById('c-vigencia').value;
-
-  const mModelo = document.getElementById('m-modelo').value;
-  const mCarroceria = document.getElementById('m-carroceria').value || '—';
-  const mPrecio = parseFloat(document.getElementById('m-precio').value)||0;
-  const mObs = document.getElementById('m-obs').value || '';
-
-  const fEsquema = document.getElementById('f-esquema').value;
+  const mCarr     = document.getElementById('m-carroceria').value || '—';
+  const mObs      = document.getElementById('m-obs').value || '';
+  const fEsquema  = document.getElementById('f-esquema').value;
   const fEnganche = parseInt(document.getElementById('f-enganche').value)||20;
-  const fPlazo = parseInt(document.getElementById('f-plazo').value)||36;
-  const fTasa = parseFloat(document.getElementById('f-tasa').value)||17.99;
+  const fPlazo    = parseInt(document.getElementById('f-plazo').value)||36;
+  const rUnidad   = document.getElementById('r-unidad').value||'';
+  const rCombust  = parseFloat(document.getElementById('r-combustible').value)||0;
+  const rMant     = parseFloat(document.getElementById('r-mantenimiento').value)||0;
+  const rKm       = parseFloat(document.getElementById('r-km').value)||0;
+  const rParo     = parseFloat(document.getElementById('r-paro').value)||0;
+  const rIngreso  = parseFloat(document.getElementById('r-ingreso').value)||0;
+  const rRendAct  = parseFloat(document.getElementById('r-rend-actual').value)||8;
+  const rDiesel   = parseFloat(document.getElementById('r-diesel').value)||26.50;
 
-  const rUnidad = document.getElementById('r-unidad').value || '';
-  const rCombustible = parseFloat(document.getElementById('r-combustible').value)||0;
-  const rMant = parseFloat(document.getElementById('r-mantenimiento').value)||0;
-  const rKm = parseFloat(document.getElementById('r-km').value)||0;
-  const rParo = parseFloat(document.getElementById('r-paro').value)||0;
-  const rIngreso = parseFloat(document.getElementById('r-ingreso').value)||0;
-  const rRendActual = parseFloat(document.getElementById('r-rend-actual').value)||8;
-  const rDiesel = parseFloat(document.getElementById('r-precio-diesel').value)||26.50;
-
-  const modelo = modelos[mModelo] || {};
+  const m = modeloActual;
+  const esPromo = PROMO_0.includes(m.key) && fPlazo<=36;
+  const tasa = esPromo ? 0 : (TASAS[fEnganche]||17.99);
+  const precioTotal = m.precio * cUnidades;
   const hoy = new Date();
-  const vigFecha = new Date(hoy.getTime() + parseInt(cVigencia)*24*60*60*1000);
+  const vigFecha = new Date(hoy.getTime()+30*24*60*60*1000);
   const fechaStr = hoy.toLocaleDateString('es-MX',{day:'2-digit',month:'long',year:'numeric'});
-  const vigStr = vigFecha.toLocaleDateString('es-MX',{day:'2-digit',month:'long',year:'numeric'});
-  const folio = 'ISZ-' + hoy.getFullYear() + '-' + String(Math.floor(Math.random()*9000)+1000);
+  const vigStr   = vigFecha.toLocaleDateString('es-MX',{day:'2-digit',month:'long',year:'numeric'});
+  const folio = 'ISZ-'+hoy.getFullYear()+'-'+String(Math.floor(Math.random()*9000)+1000);
 
-  // CÁLCULOS FINANCIAMIENTO
-  const precioTotal = mPrecio * cUnidades;
-  const fin = calcPago(precioTotal, fEnganche, fPlazo, fTasa);
-  // Comparativo contado vs credito vs arrendamiento (10% enganche, misma tasa)
-  const finContado = {mensual:0, eng:precioTotal, total:precioTotal};
-  const finCredito = calcPago(precioTotal, fEnganche, fPlazo, fTasa);
-  const finArr = calcPago(precioTotal, 10, fPlazo, fTasa * 0.95); // arrendamiento ~5% menos
+  // Cálculos financiamiento
+  const finCred = calcPago(precioTotal, fEnganche, fPlazo, tasa);
+  const finArr  = calcPago(precioTotal, 10, fPlazo, tasa===0 ? 0 : tasa*0.95);
 
-  // RENTABILIDAD
+  // Rentabilidad
   let rentHTML = '';
-  if(rCombustible > 0 || rMant > 0){
-    // Costos actuales
-    const costoActualMensual = rCombustible + rMant;
+  if(rCombust > 0 || rMant > 0){
     const perdidaParo = rParo * rIngreso;
-    const costoActualTotal = costoActualMensual + perdidaParo;
-    // Costos Isuzu estimados
-    const rendIsuzu = modelo.rend || 12;
-    const litrosMes = rKm / rRendActual;
-    const litrosIsuzuMes = rKm / rendIsuzu;
-    const ahorroCombustible = (litrosMes - litrosIsuzuMes) * rDiesel;
-    const mantIsuzu = modelo.mant ? (modelo.mant / modelo.mant_km) * rKm : rMant * 0.6;
-    const paroIsuzu = Math.max(0, rParo - 1.5);
-    const perdidaParoIsuzu = paroIsuzu * rIngreso;
-    const costoIsuzuMensual = (rKm / rendIsuzu * rDiesel) + mantIsuzu + perdidaParoIsuzu;
-    const ahorroTotal = costoActualTotal - costoIsuzuMensual;
-    const ahorroAnual = ahorroTotal * 12;
-
+    const costoActual = rCombust + rMant + perdidaParo;
+    const rendIsuzu   = m.rend || 10;
+    const litrosAct   = rKm / rRendAct;
+    const litrosIsu   = rKm / rendIsuzu;
+    const ahorComb    = (litrosAct - litrosIsu) * rDiesel;
+    const mantIsuzu   = m.mant ? (m.mant / m.mant_km) * rKm : rMant * 0.6;
+    const paroIsu     = Math.max(0, rParo - 1.5);
+    const perdIsu     = paroIsu * rIngreso;
+    const costoIsuzu  = (litrosIsu * rDiesel) + mantIsuzu + perdIsu;
+    const ahorroMes   = costoActual - costoIsuzu;
+    const ahorroAnio  = ahorroMes * 12;
     rentHTML = `
     <div class="prop-rent">
-      <div class="prop-section-title">Análisis de rentabilidad vs unidad actual</div>
+      <div class="prop-section-title">Análisis de rentabilidad — ${rUnidad || 'unidad actual'} vs Isuzu ${m.key}</div>
       <div class="rent-grid">
         <div class="rent-col actual">
-          <div class="rent-col-title">📋 ${rUnidad || 'Unidad actual'}</div>
+          <div class="rent-col-title">📋 ${rUnidad||'Unidad actual'}</div>
           <div class="rent-rows">
-            <div class="rent-row"><span class="rent-row-l">Combustible/mes</span><span class="rent-row-v">${fmt(rCombustible)}</span></div>
+            <div class="rent-row"><span class="rent-row-l">Combustible/mes</span><span class="rent-row-v">${fmt(rCombust)}</span></div>
             <div class="rent-row"><span class="rent-row-l">Mantenimiento/mes</span><span class="rent-row-v">${fmt(rMant)}</span></div>
-            <div class="rent-row"><span class="rent-row-l">Pérd. por paro (${rParo} días)</span><span class="rent-row-v">${fmt(perdidaParo)}</span></div>
-            <div class="rent-row"><span class="rent-row-l">Rendimiento</span><span class="rent-row-v">${rRendActual} km/L</span></div>
-            <div class="rent-row" style="font-weight:700;border-top:1px solid #FECACA;padding-top:6px;margin-top:4px"><span class="rent-row-l">Total mensual</span><span class="rent-row-v" style="color:#DC2626">${fmt(costoActualTotal)}</span></div>
+            <div class="rent-row"><span class="rent-row-l">Paro (${rParo} días × ${fmt(rIngreso)})</span><span class="rent-row-v">${fmt(perdidaParo)}</span></div>
+            <div class="rent-row"><span class="rent-row-l">Rendimiento</span><span class="rent-row-v">${rRendAct} km/L</span></div>
+            <div class="rent-row" style="font-weight:700;border-top:1px solid #FECACA;padding-top:5px;margin-top:3px"><span class="rent-row-l">Total mensual</span><span class="rent-row-v" style="color:#DC2626">${fmt(costoActual)}</span></div>
           </div>
         </div>
         <div class="rent-col isuzu">
-          <div class="rent-col-title">✅ Isuzu ${mModelo}</div>
+          <div class="rent-col-title">✅ Isuzu ${m.key}</div>
           <div class="rent-rows">
-            <div class="rent-row"><span class="rent-row-l">Combustible/mes</span><span class="rent-row-v">${fmt(rKm / rendIsuzu * rDiesel)}</span></div>
+            <div class="rent-row"><span class="rent-row-l">Combustible/mes</span><span class="rent-row-v">${fmt(litrosIsu*rDiesel)}</span></div>
             <div class="rent-row"><span class="rent-row-l">Mantenimiento/mes</span><span class="rent-row-v">${fmt(mantIsuzu)}</span></div>
-            <div class="rent-row"><span class="rent-row-l">Pérd. por paro (${paroIsuzu} días)</span><span class="rent-row-v">${fmt(perdidaParoIsuzu)}</span></div>
-            <div class="rent-row"><span class="rent-row-l">Rendimiento Isuzu</span><span class="rent-row-v">${rendIsuzu} km/L</span></div>
-            <div class="rent-row" style="font-weight:700;border-top:1px solid #BBF7D0;padding-top:6px;margin-top:4px"><span class="rent-row-l">Total mensual</span><span class="rent-row-v" style="color:#16a34a">${fmt(costoIsuzuMensual)}</span></div>
+            <div class="rent-row"><span class="rent-row-l">Paro est. (${paroIsu} días)</span><span class="rent-row-v">${fmt(perdIsu)}</span></div>
+            <div class="rent-row"><span class="rent-row-l">Rendimiento</span><span class="rent-row-v">${rendIsuzu} km/L</span></div>
+            <div class="rent-row" style="font-weight:700;border-top:1px solid #BBF7D0;padding-top:5px;margin-top:3px"><span class="rent-row-l">Total mensual</span><span class="rent-row-v" style="color:#16a34a">${fmt(costoIsuzu)}</span></div>
           </div>
         </div>
       </div>
       <div class="rent-total">
-        <div class="rent-total-item"><div class="rent-total-label">Ahorro mensual</div><div class="rent-total-val green">${fmt(ahorroTotal)}</div><div class="rent-total-sub">vs unidad actual</div></div>
-        <div class="rent-total-item"><div class="rent-total-label">Ahorro anual</div><div class="rent-total-val green">${fmt(ahorroAnual)}</div><div class="rent-total-sub">en costos operativos</div></div>
-        <div class="rent-total-item"><div class="rent-total-label">Recuperación</div><div class="rent-total-val">${precioTotal > 0 ? Math.ceil(precioTotal/ahorroAnual) + ' años' : '—'}</div><div class="rent-total-sub">estimada de inversión</div></div>
+        <div><div class="rent-total-label">Ahorro mensual</div><div class="rent-total-val green">${fmt(ahorroMes)}</div><div class="rent-total-sub">vs unidad actual</div></div>
+        <div><div class="rent-total-label">Ahorro anual</div><div class="rent-total-val green">${fmt(ahorroAnio)}</div><div class="rent-total-sub">en costos operativos</div></div>
+        <div><div class="rent-total-label">Recuperación est.</div><div class="rent-total-val">${ahorroAnio>0?Math.ceil(precioTotal/ahorroAnio)+' años':'—'}</div><div class="rent-total-sub">de inversión</div></div>
       </div>
     </div>`;
   }
 
-  // CARROCERÍAS
-  const carrs = modelo.carrocerias || [];
-  const carHTML = carrs.length > 0 ? `
-  <div class="prop-car">
-    <div class="prop-section-title">Aplicaciones de carrocería disponibles</div>
-    <div class="car-tags">${carrs.map(c=>`<span class="car-tag">${c}</span>`).join('')}${mCarroceria !== '—' && !carrs.includes(mCarroceria) ? `<span class="car-tag" style="background:var(--red-light);color:var(--red);border-color:var(--red)">${mCarroceria} ★</span>` : ''}</div>
-  </div>` : '';
-
-  // MANTENIMIENTO
-  const mantHTML = modelo.mant ? `
+  // Mantenimiento
+  const mantHTML = m.mant ? `
   <div class="prop-mant">
-    <div class="prop-section-title">Programa de mantenimiento Isuzu (precios vigentes)</div>
-    <div class="mant-row"><span class="mant-row-l">Costo de servicio por ${fmtN(modelo.mant_km)} km</span><span class="mant-row-v">${fmt(modelo.mant)}</span></div>
-    <div class="mant-row"><span class="mant-row-l">Costo por km recorrido</span><span class="mant-row-v">${(modelo.mant/modelo.mant_km).toFixed(2)} $/km</span></div>
-    <div class="mant-row"><span class="mant-row-l">Garantía del vehículo</span><span class="mant-row-v">2 años o 100,000 km (lo que ocurra primero)</span></div>
-    <div class="mant-row"><span class="mant-row-l">Red de servicio</span><span class="mant-row-v">Distribuidores autorizados en todo el norte del país</span></div>
+    <div class="prop-section-title">Programa de mantenimiento Isuzu</div>
+    <div class="mant-row"><span class="mant-row-l">Costo de servicio c/ ${fmtN(m.mant_km)} km</span><span class="mant-row-v">${fmt(m.mant)}</span></div>
+    <div class="mant-row"><span class="mant-row-l">Costo por km</span><span class="mant-row-v">${(m.mant/m.mant_km).toFixed(2)} $/km</span></div>
+    <div class="mant-row"><span class="mant-row-l">Garantía</span><span class="mant-row-v">2 años o 100,000 km</span></div>
+    <div class="mant-row"><span class="mant-row-l">Red de servicio</span><span class="mant-row-v">Distribuidores autorizados norte del país</span></div>
   </div>` : '';
 
-  // COMPARATIVO FINANCIAMIENTO
-  const esPromo = ['ELF 100','ELF 200','ELF 300','ELF 350'].includes(mModelo) && fPlazo <= 36;
-  const tasaDisplay = esPromo ? '0%' : fTasa + '%';
-  const mensualCredito = esPromo ? precioTotal*(1-fEnganche/100)/fPlazo : finCredito.mensual;
-
-  const finHTML = `
-  <div class="prop-fin">
-    <div class="prop-section-title">Opciones de financiamiento</div>
-    <div class="fin-tabs-grid">
-      <div class="fin-tab">
-        <div class="fin-tab-title">💳 Contado</div>
-        <div class="fin-tab-rows">
-          <div class="fin-tab-row"><span class="fin-tab-row-l">Precio total</span><span class="fin-tab-row-v">${fmt(precioTotal)}</span></div>
-          <div class="fin-tab-row"><span class="fin-tab-row-l">Descuento contado</span><span class="fin-tab-row-v green">Consultar</span></div>
-        </div>
-        <div class="fin-tab-mensual"><div class="fin-tab-mensual-num" style="font-size:18px">Pago único</div><div class="fin-tab-mensual-label">Sin intereses</div></div>
-      </div>
-      <div class="fin-tab ${fEsquema==='credito'?'best':''}">
-        ${fEsquema==='credito'?'<div class="fin-tab-best-badge">Recomendado</div>':''}
-        <div class="fin-tab-title">🏦 Crédito Banorte${esPromo?' · PROMO 0%':''}</div>
-        <div class="fin-tab-rows">
-          <div class="fin-tab-row"><span class="fin-tab-row-l">Enganche (${fEnganche}%)</span><span class="fin-tab-row-v">${fmt(precioTotal*fEnganche/100)}</span></div>
-          <div class="fin-tab-row"><span class="fin-tab-row-l">Plazo</span><span class="fin-tab-row-v">${fPlazo} meses</span></div>
-          <div class="fin-tab-row"><span class="fin-tab-row-l">Tasa anual</span><span class="fin-tab-row-v ${esPromo?'red':''}">${tasaDisplay}</span></div>
-          <div class="fin-tab-row"><span class="fin-tab-row-l">Total a pagar</span><span class="fin-tab-row-v">${fmt(esPromo?precioTotal:finCredito.total)}</span></div>
-        </div>
-        <div class="fin-tab-mensual"><div class="fin-tab-mensual-num">${fmt(mensualCredito)}</div><div class="fin-tab-mensual-label">pago mensual estimado</div></div>
-      </div>
-      <div class="fin-tab ${fEsquema==='arrendamiento'?'best':''}">
-        ${fEsquema==='arrendamiento'?'<div class="fin-tab-best-badge">Recomendado</div>':''}
-        <div class="fin-tab-title">📋 Arrendamiento puro</div>
-        <div class="fin-tab-rows">
-          <div class="fin-tab-row"><span class="fin-tab-row-l">Enganche desde</span><span class="fin-tab-row-v">10%</span></div>
-          <div class="fin-tab-row"><span class="fin-tab-row-l">Plazo</span><span class="fin-tab-row-v">${fPlazo} meses</span></div>
-          <div class="fin-tab-row"><span class="fin-tab-row-l">Deducible</span><span class="fin-tab-row-v green">100%</span></div>
-          <div class="fin-tab-row"><span class="fin-tab-row-l">Arrendadoras</span><span class="fin-tab-row-v">TIP · ABC · BX+</span></div>
-        </div>
-        <div class="fin-tab-mensual"><div class="fin-tab-mensual-num">${fmt(finArr.mensual)}</div><div class="fin-tab-mensual-label">renta mensual est. (10% eng.)</div></div>
-      </div>
-    </div>
-  </div>`;
-
-  // OBSERVACIONES
-  const obsHTML = mObs ? `<div style="padding:16px 44px;border-bottom:1px solid var(--border);font-size:12px;color:#555"><strong style="color:#111">Observaciones:</strong> ${mObs}</div>` : '';
+  // Obs
+  const obsHTML = mObs ? `<div style="padding:14px 44px;border-bottom:1px solid var(--border);font-size:12px;color:#555"><strong style="color:#111">Observaciones:</strong> ${mObs}</div>` : '';
 
   const html = `
   <div class="propuesta" id="propuesta">
@@ -591,7 +614,7 @@ function generarPropuesta(){
         <div class="prop-folio">
           <div class="prop-folio-label">Folio</div>
           <div class="prop-folio-num">${folio}</div>
-          <div class="prop-folio-label" style="margin-top:4px">${fechaStr}</div>
+          <div class="prop-folio-label" style="margin-top:3px">${fechaStr}</div>
         </div>
       </div>
       <div class="prop-header-main">
@@ -600,8 +623,8 @@ function generarPropuesta(){
           <div class="prop-subtitulo">Distribuidor Autorizado · Norte de México</div>
         </div>
         <div class="prop-modelo-badge">
-          <div class="prop-modelo-nombre">${mModelo || '—'}</div>
-          <div class="prop-modelo-pbv">${modelo.pbv || ''}</div>
+          <div class="prop-modelo-nombre">${m.key}</div>
+          <div class="prop-modelo-pbv">${m.pbv} · ${m.cap}</div>
         </div>
       </div>
     </div>
@@ -611,13 +634,13 @@ function generarPropuesta(){
         <div class="prop-meta-label">Presentado a</div>
         <div class="prop-meta-name">${cNombre}</div>
         <div class="prop-meta-rows">
-          ${cTipo ? `<div class="prop-meta-row"><strong>Tipo:</strong>${cTipo}</div>` : ''}
-          ${cGiro ? `<div class="prop-meta-row"><strong>Giro:</strong>${cGiro}</div>` : ''}
-          ${cTel ? `<div class="prop-meta-row"><strong>Tel:</strong>${cTel}</div>` : ''}
-          ${cEmail ? `<div class="prop-meta-row"><strong>Correo:</strong>${cEmail}</div>` : ''}
-          ${cUnidades > 1 ? `<div class="prop-meta-row"><strong>Unidades:</strong>${cUnidades}</div>` : ''}
+          ${cTipo?`<div class="prop-meta-row"><strong>Tipo:</strong>${cTipo}</div>`:''}
+          ${cGiro?`<div class="prop-meta-row"><strong>Giro:</strong>${cGiro}</div>`:''}
+          ${cTel?`<div class="prop-meta-row"><strong>Tel:</strong>${cTel}</div>`:''}
+          ${cEmail?`<div class="prop-meta-row"><strong>Correo:</strong>${cEmail}</div>`:''}
+          ${cUnidades>1?`<div class="prop-meta-row"><strong>Unidades:</strong>${cUnidades}</div>`:''}
         </div>
-        <div class="prop-vigencia"><i class="fas fa-clock"></i> Vigencia: ${vigStr}</div>
+        <div class="prop-vigencia"><i class="fas fa-clock"></i> Vigencia: <strong>${vigStr}</strong> (30 días)</div>
       </div>
       <div class="prop-meta-block">
         <div class="prop-meta-label">Asesor comercial</div>
@@ -633,47 +656,80 @@ function generarPropuesta(){
     </div>
 
     <div class="prop-modelo-img">
-      ${mModelo && modelo.img ? `<img src="${modelo.img}" alt="${mModelo}" onerror="this.parentElement.innerHTML='<div class=\'prop-modelo-img-placeholder\'><i class=\'fas fa-truck\'></i></div>'">` : '<div class="prop-modelo-img-placeholder"><i class="fas fa-truck"></i></div>'}
+      <img src="${m.img}" alt="${m.key}" onerror="this.parentElement.innerHTML='<div style=height:120px;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:36px><i class=fas fa-truck></i></div>'">
     </div>
 
     <div class="prop-specs">
-      <div class="prop-section-title">Especificaciones técnicas — ${mModelo || '—'} · Carrocería: ${mCarroceria}</div>
+      <div class="prop-section-title">Especificaciones técnicas — ${m.label} · Carrocería: ${mCarr}</div>
       <div class="specs-grid">
-        <div class="spec-box"><div class="spec-box-label">Motor</div><div class="spec-box-val">${modelo.motor||'—'}</div></div>
-        <div class="spec-box"><div class="spec-box-label">Potencia</div><div class="spec-box-val">${modelo.hp||'—'}</div></div>
-        <div class="spec-box"><div class="spec-box-label">Torque</div><div class="spec-box-val">${modelo.torque||'—'}</div></div>
-        <div class="spec-box"><div class="spec-box-label">PBV</div><div class="spec-box-val">${modelo.pbv||'—'}</div></div>
-        <div class="spec-box"><div class="spec-box-label">Cilindrada</div><div class="spec-box-val">${modelo.cc||'—'}</div></div>
-        <div class="spec-box"><div class="spec-box-label">Largo máx.</div><div class="spec-box-val" style="font-size:13px">${modelo.largo||'—'}</div></div>
-        <div class="spec-box"><div class="spec-box-label">Dist. ejes</div><div class="spec-box-val" style="font-size:12px">${modelo.ejes||'—'}</div></div>
-        <div class="spec-box"><div class="spec-box-label">Tanque</div><div class="spec-box-val">${modelo.tanque||'—'}</div></div>
+        <div class="spec-box"><div class="spec-box-label">Motor</div><div class="spec-box-val" style="font-size:12px">${m.motor}</div></div>
+        <div class="spec-box"><div class="spec-box-label">Potencia</div><div class="spec-box-val">${m.hp}</div></div>
+        <div class="spec-box"><div class="spec-box-label">Torque</div><div class="spec-box-val">${m.torque}</div></div>
+        <div class="spec-box"><div class="spec-box-label">PBV</div><div class="spec-box-val">${m.pbv}</div></div>
+        <div class="spec-box"><div class="spec-box-label">Cap. carga</div><div class="spec-box-val">${m.cap}</div></div>
+        <div class="spec-box"><div class="spec-box-label">Largo máx.</div><div class="spec-box-val" style="font-size:13px">${m.largo}</div></div>
+        <div class="spec-box"><div class="spec-box-label">Dist. ejes</div><div class="spec-box-val" style="font-size:13px">${m.ejes}</div></div>
+        <div class="spec-box"><div class="spec-box-label">Tanque</div><div class="spec-box-val">${m.tanque}</div></div>
       </div>
     </div>
 
-    ${mPrecio > 0 ? `
     <div class="prop-precio">
       <div class="precio-grid">
         <div class="precio-item">
-          <div class="precio-label">Precio unitario (c/IVA)</div>
-          <div class="precio-val">${fmt(mPrecio)}</div>
-          <div class="precio-sub">IVA incluido</div>
+          <div class="precio-label">Precio unitario (IVA inc.)</div>
+          <div class="precio-val">${fmt(m.precio)}</div>
+          <div class="precio-sub">Lista 2027</div>
         </div>
         <div class="precio-item">
           <div class="precio-label">Unidades</div>
           <div class="precio-val">${cUnidades}</div>
-          <div class="precio-sub">${cUnidades === 1 ? 'unidad' : 'unidades'}</div>
+          <div class="precio-sub">${cUnidades===1?'unidad':'unidades'}</div>
         </div>
         <div class="precio-item">
-          <div class="precio-label">Total de inversión</div>
+          <div class="precio-label">Total inversión</div>
           <div class="precio-val highlight">${fmt(precioTotal)}</div>
           <div class="precio-sub">precio de lista</div>
         </div>
       </div>
-    </div>` : ''}
+    </div>
 
-    ${mPrecio > 0 ? finHTML : ''}
+    <div class="prop-fin">
+      <div class="prop-section-title">Opciones de financiamiento</div>
+      <div class="fin-tabs-grid">
+        <div class="fin-tab">
+          <div class="fin-tab-title">💳 Contado</div>
+          <div class="fin-tab-rows">
+            <div class="fin-tab-row"><span class="fin-tab-row-l">Precio total</span><span class="fin-tab-row-v">${fmt(precioTotal)}</span></div>
+            <div class="fin-tab-row"><span class="fin-tab-row-l">Descuento</span><span class="fin-tab-row-v green">Consultar</span></div>
+          </div>
+          <div class="fin-tab-mensual"><div class="fin-tab-mensual-num" style="font-size:16px">Pago único</div><div class="fin-tab-mensual-label">Sin intereses</div></div>
+        </div>
+        <div class="fin-tab ${fEsquema==='credito'?'best':''}">
+          ${fEsquema==='credito'?'<div class="fin-tab-best-badge">Recomendado</div>':''}
+          <div class="fin-tab-title">🏦 Crédito Banorte${esPromo?' · PROMO':''}</div>
+          <div class="fin-tab-rows">
+            <div class="fin-tab-row"><span class="fin-tab-row-l">Enganche (${fEnganche}%)</span><span class="fin-tab-row-v">${fmt(precioTotal*fEnganche/100)}</span></div>
+            <div class="fin-tab-row"><span class="fin-tab-row-l">Plazo</span><span class="fin-tab-row-v">${fPlazo} meses</span></div>
+            <div class="fin-tab-row"><span class="fin-tab-row-l">Tasa anual</span><span class="fin-tab-row-v ${esPromo?'red':''}">${esPromo?'0% — PROMO':tasa+'%'}</span></div>
+            <div class="fin-tab-row"><span class="fin-tab-row-l">Total a pagar</span><span class="fin-tab-row-v">${fmt(finCred.total)}</span></div>
+          </div>
+          <div class="fin-tab-mensual"><div class="fin-tab-mensual-num">${fmt(finCred.mensual)}</div><div class="fin-tab-mensual-label">pago mensual estimado</div></div>
+        </div>
+        <div class="fin-tab ${fEsquema==='arrendamiento'?'best':''}">
+          ${fEsquema==='arrendamiento'?'<div class="fin-tab-best-badge">Recomendado</div>':''}
+          <div class="fin-tab-title">📋 Arrendamiento puro</div>
+          <div class="fin-tab-rows">
+            <div class="fin-tab-row"><span class="fin-tab-row-l">Enganche desde</span><span class="fin-tab-row-v">10%</span></div>
+            <div class="fin-tab-row"><span class="fin-tab-row-l">Plazo</span><span class="fin-tab-row-v">${fPlazo} meses</span></div>
+            <div class="fin-tab-row"><span class="fin-tab-row-l">Deducible</span><span class="fin-tab-row-v green">100%</span></div>
+            <div class="fin-tab-row"><span class="fin-tab-row-l">Arrendadoras</span><span class="fin-tab-row-v">TIP · ABC · BX+</span></div>
+          </div>
+          <div class="fin-tab-mensual"><div class="fin-tab-mensual-num">${fmt(finArr.mensual)}</div><div class="fin-tab-mensual-label">renta mensual est. (10% eng.)</div></div>
+        </div>
+      </div>
+    </div>
+
     ${rentHTML}
-    ${carHTML}
     ${mantHTML}
     ${obsHTML}
 
@@ -684,7 +740,7 @@ function generarPropuesta(){
         <div class="prop-footer-item"><i class="fas fa-phone"></i> 812 198 9556</div>
         <div class="prop-footer-item"><i class="fas fa-location-dot"></i> Sta. Catarina, N.L.</div>
       </div>
-      <div class="prop-footer-note">Propuesta folio ${folio} · Vigente hasta ${vigStr} · Precios sujetos a disponibilidad e inventario · Pagos mensuales son estimados, sujetos a aprobación de crédito</div>
+      <div class="prop-footer-note">Folio ${folio} · Vigente hasta ${vigStr} · Precios con IVA · Estimación sujeta a aprobación de crédito y disponibilidad de inventario</div>
     </div>
   </div>`;
 
@@ -692,11 +748,29 @@ function generarPropuesta(){
   document.getElementById('propuesta-output').style.display = 'block';
   document.getElementById('propuesta-output').innerHTML = html;
 
+  // Activar botón PDF
+  const btnPdf = document.getElementById('btn-pdf');
+  btnPdf.disabled = false;
+  document.getElementById('pdf-note').textContent = 'Haz clic para revisar aviso legal y descargar';
+  propuestaGenerada = true;
+
   btn.disabled = false;
   btn.innerHTML = '<i class="fas fa-sync-alt"></i> Actualizar propuesta';
+  document.getElementById('panel-preview').scrollTo({top:0,behavior:'smooth'});
+}
 
-  // Scroll al preview
-  document.getElementById('panel-preview').scrollTo({top:0, behavior:'smooth'});
+function abrirModal(){
+  if(!propuestaGenerada){ alert('Genera la propuesta primero.'); return; }
+  document.getElementById('modal-legales').classList.add('visible');
+}
+
+function cerrarModal(){
+  document.getElementById('modal-legales').classList.remove('visible');
+}
+
+function confirmarPDF(){
+  cerrarModal();
+  window.print();
 }
 </script>
 </body>
